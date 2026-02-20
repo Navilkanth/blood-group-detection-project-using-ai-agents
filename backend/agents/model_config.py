@@ -1,0 +1,44 @@
+"""
+CNN Model Configuration
+Define model architecture, input requirements, and blood type class mappings
+"""
+
+MODEL_ARCHITECTURE = {
+    "input_shape": (224, 224, 3),  # RGB image size
+    "num_classes": 4,  # A, B, AB, O
+    "framework": "pytorch",  # pytorch or tensorflow
+}
+
+BLOOD_TYPE_MAPPING = {
+    0: "A",
+    1: "B",
+    2: "AB",
+    3: "O",
+}
+
+REVERSE_BLOOD_TYPE_MAPPING = {
+    "A": 0,
+    "B": 1,
+    "AB": 2,
+    "O": 3,
+}
+
+# Preprocessing normalization values (ImageNet standard)
+NORMALIZE_MEAN = [0.485, 0.456, 0.406]
+NORMALIZE_STD = [0.229, 0.224, 0.225]
+
+# Model inference settings
+INFERENCE_SETTINGS = {
+    "batch_size": 1,
+    "use_gpu": True,
+    "confidence_threshold": 0.5,
+    "top_k_predictions": 2,  # Return top 2 predictions for analysis
+}
+
+# Blood type confidence calibration thresholds
+CONFIDENCE_CALIBRATION = {
+    "A": 0.70,
+    "B": 0.68,
+    "AB": 0.65,  # AB is hardest to detect
+    "O": 0.72,   # O is easiest (no antigens)
+}
